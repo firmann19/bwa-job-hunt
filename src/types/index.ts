@@ -5,16 +5,16 @@ export type categoryJobType = {
 };
 
 export type JobType = {
-  //id: string;
+  id: string;
   image: string;
   jobType: string;
   name: string;
   type: string;
   location: string;
   desc: string;
-  //category: categoryJobType;
-  //needs: number;
-  //applicants: number;
+  category: categoryJobType;
+  needs: number;
+  applicants: number;
   skills: string[];
 };
 
