@@ -47,17 +47,18 @@ export type CompanySocmedType = {
 };
 
 export type CompanyType = {
-  id: string;
+  //id: string;
+  categories: string;
   image: string;
   name: string;
   totalJobs: number;
   description: string;
-  website: string;
-  location: string;
-  industry: string;
-  employee: string;
-  dateFounded: Date;
-  techStack: string[];
-  sosmed: CompanySocmedType;
-  teams: CompanyTeamType[];
+  //website: string;
+  //location: string;
+  //industry: string;
+  //employee: string;
+  //dateFounded: Date;
+  //techStack: string[];
+  //sosmed: CompanySocmedType;
+  //teams: CompanyTeamType[];
 };
