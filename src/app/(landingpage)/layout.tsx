@@ -3,6 +3,9 @@ import '../globals.css'
 import type { Metadata } from 'next'
 import { Epilogue } from 'next/font/google'
 import Image from "next/image"
+import Footer from '@/components/layouts/Navbar/Footer'
+import { Toaster } from '@/components/ui/toaster'
+import AuthProvider from '@/providers/AuthProvider'
 
 const epilogue = Epilogue({ subsets: ['latin'] })
 
@@ -19,11 +22,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${epilogue.className} relative overflow-x-hidden`}>
-        <Navbar />
-        <main>
-          <div className='w-full h-screen absolute top-0 -z-10' />
-          {children}
-        </main>
+        <AuthProvider>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+          <Toaster />
+        </AuthProvider>
       </body>
     </html>
   )
