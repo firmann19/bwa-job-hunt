@@ -20,9 +20,9 @@ import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import UploadField from "../UploadField";
-//import { useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { supabaseUploadFile } from "@/lib/supabase";
-//import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 
 interface FormModalApplyProps {
@@ -44,10 +44,10 @@ const FormModalApply: FC<FormModalApplyProps> = ({
         resolver: zodResolver(formApplySchema),
     });
 
-    //const { toast } = useToast();
+    const { toast } = useToast();
     const router = useRouter();
 
-    //const { data: session } = useSession();
+    const { data: session } = useSession();
 
     const onSubmit = async (val: z.infer<typeof formApplySchema>) => {
         try {
@@ -57,7 +57,7 @@ const FormModalApply: FC<FormModalApplyProps> = ({
             );
 
             const reqData = {
-                //userId: session?.user.id,
+                userId: session?.user.id,
                 jobId: id,
                 resume: filename,
                 coverLetter: val.coverLetter,
@@ -77,18 +77,18 @@ const FormModalApply: FC<FormModalApplyProps> = ({
                 body: JSON.stringify(reqData),
             });
 
-            {/* await toast({
+            await toast({
                 title: "Success",
                 description: "Apply job success",
-            }); */}
+            });
 
             router.replace("/");
         } catch (error) {
             console.log(error);
-            {/* toast({
+            toast({
                 title: "Error",
                 description: "Please try again",
-            }); */}
+            });
         }
     };
 

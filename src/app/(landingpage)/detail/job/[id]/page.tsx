@@ -7,16 +7,16 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { FC } from "react";
 import { BiCategory } from "react-icons/bi";
-//import prisma from "../../../../../../lib/prisma";
+import prisma from "../../../../../../lib/prisma";
 import { supabasePublicUrl } from "@/lib/supabase";
 import { dateFormat } from "@/lib/utils";
-//import { getServerSession } from "next-auth";
-//import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 async function getDetailJob(id: string) {
-   {/* const session = await getServerSession(authOptions); */}
+    const session = await getServerSession(authOptions);
 
-   {/* const data = await prisma.job.findFirst({
+    const data = await prisma.job.findFirst({
         where: {
             id,
         },
@@ -28,7 +28,7 @@ async function getDetailJob(id: string) {
             },
             CategoryJob: true,
         },
-    }); */} 
+    });
 
     let imageUrl;
 
@@ -74,8 +74,8 @@ async function getDetailJob(id: string) {
 }
 
 const DetailJobPage = async ({ params }: { params: { id: string } }) => {
-   // const data = await getDetailJob(params.id);
-   // const session = await getServerSession(authOptions);
+    const data = await getDetailJob(params.id);
+    const session = await getServerSession(authOptions);
 
     return (
         <>
