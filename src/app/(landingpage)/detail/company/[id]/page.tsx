@@ -16,10 +16,10 @@ import {
 } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import LatestJobs from "@/components/organisms/LatestJob";
-//import prisma from "../../../../../../lib/prisma";
+import prisma from "../../../../../../lib/prisma";
 import { supabasePublicUrl } from "@/lib/supabase";
 import { dateFormat } from "@/lib/utils";
-//import { CompanyTeam } from "@prisma/client";
+import { CompanyTeam } from "@prisma/client";
 
 type params = {
     id: string;
@@ -29,7 +29,7 @@ interface DetailCompanyPageProps {
     params: params;
 }
 
-/* async function getDetailCompany(id: string) {
+async function getDetailCompany(id: string) {
     const data = await prisma.company.findFirst({
         where: { id },
         include: {
@@ -59,14 +59,14 @@ interface DetailCompanyPageProps {
         ...data,
         imageUrl,
     };
-} */
+}
 
 const DetailCompanyPage: FC<DetailCompanyPageProps> = async ({ params }) => {
-    //const data = await getDetailCompany(params.id);
+    const data = await getDetailCompany(params.id);
 
     return (
         <>
-          {/*  {data && data.Companyoverview && ( */}
+            {data && data.Companyoverview && (
                 <>
                     <div className="bg-slate-100 px-32 pt-16 pb-14">
                         <div className="inline-flex gap-3 text-sm text-muted-foreground">
@@ -302,7 +302,7 @@ const DetailCompanyPage: FC<DetailCompanyPageProps> = async ({ params }) => {
                         </div>
                     )}
                 </>
-           {/* )} */}
+            )}
             <div className="px-32">
                 <LatestJobs />
             </div>
