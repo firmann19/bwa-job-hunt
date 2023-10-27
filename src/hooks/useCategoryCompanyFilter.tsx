@@ -4,29 +4,29 @@ import { useMemo } from "react";
 import useSWR from "swr";
 
 const useCategoryCompanyFilter = () => {
-    const { data, error, isLoading } = useSWR(
-        "/api/company/categories",
-        fetcher
-    );
+	const { data, error, isLoading } = useSWR(
+		"/api/company/categories",
+		fetcher
+	);
 
-    const categories = useMemo(
-        () => parsingCategoriesToOptions(data, isLoading, error, true),
-        [data, error, isLoading]
-    );
+	const categories = useMemo(
+		() => parsingCategoriesToOptions(data, isLoading, error, true),
+		[data, error, isLoading]
+	);
 
-    const filters = useMemo(() => {
-        return [
-            {
-                name: "industry",
-                label: "Industry",
-                items: categories,
-            },
-        ] as filterFormType[];
-    }, [categories]);
+	const filters = useMemo(() => {
+		return [
+			{
+				name: "industry",
+				label: "Industry",
+				items: categories,
+			},
+		] as filterFormType[];
+	}, [categories]);
 
-    return {
-        filters,
-    };
+	return {
+		filters,
+	};
 };
 
 export default useCategoryCompanyFilter;

@@ -4,26 +4,26 @@ import { useMemo } from "react";
 import useSWR from "swr";
 
 const useCategoryJobFilter = () => {
-    const { data, error, isLoading } = useSWR("/api/jobs/categories", fetcher);
+	const { data, error, isLoading } = useSWR("/api/jobs/categories", fetcher);
 
-    const categories = useMemo(
-        () => parsingCategoriesToOptions(data, isLoading, error),
-        [data, error, isLoading]
-    );
+	const categories = useMemo(
+		() => parsingCategoriesToOptions(data, isLoading, error),
+		[data, error, isLoading]
+	);
 
-    const filters = useMemo(() => {
-        return [
-            {
-                name: "categories",
-                label: "Categories",
-                items: categories,
-            },
-        ] as filterFormType[];
-    }, [categories]);
+	const filters = useMemo(() => {
+		return [
+			{
+				name: "categories",
+				label: "Categories",
+				items: categories,
+			},
+		] as filterFormType[];
+	}, [categories]);
 
-    return {
-        filters,
-    };
+	return {
+		filters,
+	};
 };
 
 export default useCategoryJobFilter;
