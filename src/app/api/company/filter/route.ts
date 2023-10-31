@@ -23,7 +23,7 @@ export async function GET(request: Request) {
 			  }
 			: {};
 
-	const companies = await prisma.company.findMany({
+	const companies = await prisma.company.find({
 		where: { ...categoryQuery },
 		include: {
 			Companyoverview: true,
