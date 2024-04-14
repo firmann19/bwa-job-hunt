@@ -3,18 +3,19 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("POSTGRES_PRISMA_URL")
+  provider = "mongodb"
+  url      = env("MongoDB_PRISMA_URL")
 }
 
 model CategoryJob {
-  id   String @id
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
   name String
   Job  Job[]
 }
 
+
 model Company {
-  id                 String               @id
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
   name               String
   password           String
   email              String               @unique
@@ -25,7 +26,7 @@ model Company {
 }
 
 model CompanySocialMedia {
-  id        String   @id
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
   instagram String
   twitter   String
   facebook  String
@@ -36,7 +37,7 @@ model CompanySocialMedia {
 }
 
 model CompanyTeam {
-  id        String   @id
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
   name      String
   position  String
   instagram String
@@ -46,7 +47,7 @@ model CompanyTeam {
 }
 
 model Companyoverview {
-  id          String   @id
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
   image       String
   website     String
   name        String
@@ -61,7 +62,7 @@ model Companyoverview {
 }
 
 model Job {
-  id             String       @id
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
   roles          String
   datePosted     DateTime     @default(now())
   dueDate        DateTime
@@ -84,7 +85,7 @@ model Job {
 }
 
 model User {
-  id        String      @id @default(cuid())
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
   name      String
   password  String
   email     String      @unique
@@ -92,7 +93,7 @@ model User {
 }
 
 model Applicant {
-  id               String  @id @default(cuid())
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
   userId           String?
   jobId            String?
   previousJobTitle String
@@ -106,6 +107,6 @@ model Applicant {
 }
 
 model Industry {
-  id   String @id
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
   name String
 }
